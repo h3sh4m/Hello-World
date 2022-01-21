@@ -194,7 +194,7 @@ def user_stats(df,city):
     print('The user types statistics is as follows:\n{}'.format(user_types))
 
     # Display counts of gender
-    if city != 'washington':
+    if city != '3':
         gender_counts = df['Gender'].value_counts()
         print('The Gender statistics is as follows:\n{}'.format(gender_counts))
 
@@ -225,12 +225,22 @@ def data_entry_validation(validation_list, print_txt, input_txt,error_txt):
             print (error_txt)
     return parameter_value
 
+def display_data (df):
+    view_data = data_entry_validation (['yes', 'no' ], 'Would you like to view 5 rows of individual trip data?', 'Enter yes or no?: ', 'Please enter a valid option')
+    start_loc = 0
+    while view_data == 'yes':
+        print(df.iloc[start_loc:start_loc+5])
+        start_loc += 5
+        view_data = data_entry_validation (['yes', 'no' ], 'Would you like to repeat and view more 5 rows?', 'Enter yes or no?: ', 'Please enter a valid option')
+
+
 def main():
 
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
+        display_data(df)
         time_stats(df,city, month, day)
         station_stats(df)
         trip_duration_stats(df)
