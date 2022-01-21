@@ -194,7 +194,7 @@ def user_stats(df,city):
     print('The user types statistics is as follows:\n{}'.format(user_types))
 
     # Display counts of gender
-    if city != 'washington':
+    if city != '3':
         gender_counts = df['Gender'].value_counts()
         print('The Gender statistics is as follows:\n{}'.format(gender_counts))
 
